@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>Effective Tax Rate Comparison</title>
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --surface2:#efece4; --ink:#1a1f1c; --muted:#5c665f; --line:#ddd8cb;
+  --accent:#0f766e; --accent-ink:#ffffff; --bar:#0f766e; --bar-alt:#b45309; --warn-bg:#fef3c7; --warn-ink:#92400e;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#121613; --surface:#1b211d; --surface2:#242b26; --ink:#e8ece9; --muted:#9aa79e; --line:#333c36; --accent:#2dd4bf; --accent-ink:#062622; --bar:#2dd4bf; --bar-alt:#f59e0b; --warn-bg:#3a2f12; --warn-ink:#fcd34d; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 64px}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.1;margin:0 0 10px;letter-spacing:-0.02em}
+.lede{font-size:17px;color:var(--muted);max-width:70ch;margin:0 0 6px}
+.meta{font-size:13px;color:var(--muted);font-family:system-ui,sans-serif;margin-bottom:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin:18px 0}
+h2{font-size:22px;margin:28px 0 10px}
+h3{font-size:16px;margin:18px 0 6px;font-family:system-ui,sans-serif}
+p,li{font-size:15.5px}
+.small{font-size:13.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:14px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.badge{display:inline-block;background:var(--warn-bg);color:var(--warn-ink);border-radius:999px;padding:1px 8px;font-size:11.5px;font-family:system-ui,sans-serif;font-weight:600}
+.callout{background:var(--surface2);border-radius:10px;padding:14px 16px;margin:14px 0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:12.5px;color:var(--muted);margin:8px 0 4px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+a{color:var(--accent)}
+ul.sources{font-family:system-ui,sans-serif;font-size:14px;line-height:1.7}
+@media(max-width:640px){ th.hide,td.hide{display:none} .card{padding:14px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>What share of a salary actually goes in tax?</h1>
+<p class="lede">One number per place: personal income tax plus mandatory employee payroll contributions, divided by gross salary. Single employee, no children. The same payslip number in each local currency — shown at two levels, 150,000 and 100,000 — so this compares tax systems, not living standards.</p>
+<p class="meta">Tax year 2026 where published, otherwise 2025 &middot; Modelled from official published rates &middot; Japan uses ¥15,000,000 and ¥10,000,000 (¥150,000 / ¥100,000 are not viable salaries)</p>
+
+<h2>At a 150,000 salary</h2>
+
+<div class="callout"><strong>Read Singapore with care.</strong> Its 21.9% is the lowest here, but only 8.3 points are income tax. The other 13.6 points are employee CPF contributions (20% rate, capped at the S$102,000 annual ceiling) — compulsory savings in the individual&rsquo;s own account, not general tax revenue. Estonia&rsquo;s figure similarly includes a 2% funded-pension contribution to the employee&rsquo;s own pension account.</div>
+
+<div class="card">
+<h2 style="margin-top:0">Ranked: lowest to highest</h2>
+<div class="legend"><span><span class="dot" style="background:var(--bar)"></span>Income tax</span><span><span class="dot" style="background:var(--bar-alt)"></span>Employee social contributions / mandatory savings</span></div>
+<svg viewBox="0 0 720 470" width="100%" role="img" aria-label="Ranked bar chart of effective tax rates">
+<!-- built by script -->
+<g id="chart"></g>
+</svg>
+<p class="small">New York City shown separately from New York State. Zurich is an estimate; low-tax cantons such as Zug are several points lower. Full tax wedge including employer costs is higher everywhere — see caveats.</p>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">The numbers</h2>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Jurisdiction</th><th>Salary basis</th><th class="num">Effective rate</th><th class="num hide">Income tax</th><th class="num hide">Employee contributions</th><th class="num">You keep</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+<p class="small">Splits shown where modelled separately. US federal baseline in every US row: income tax 16.5% + FICA 7.7%.</p>
+</div>
+
+<h2>At a 100,000 salary</h2>
+<p>The same method at a gross salary of 100,000 in local currency (¥10,000,000 for Japan). Most rates fall as pay drops — but two places move the other way, and the ranking reshuffles.</p>
+
+<div class="callout"><strong>Singapore runs the other way.</strong> At S$100,000 the CPF annual ceiling (S$102,000) no longer binds, so the employee contribution is the full 20% of salary. The combined rate rises to 25.7% — higher than at S$150,000 (21.9%) — even though income tax alone is only 5.7%. As before, the CPF share is compulsory savings in the employee&rsquo;s own account.</div>
+
+<div class="callout"><strong>The UK is much lighter at £100,000.</strong> At exactly £100,000 the personal allowance is still fully intact; it is only withdrawn between £100,000 and £125,140. That is a large part of why the UK rate drops to 31.4% here, against 39.1% at £150,000.</div>
+
+<div class="card">
+<h2 style="margin-top:0">Ranked: lowest to highest</h2>
+<div class="legend"><span><span class="dot" style="background:var(--bar)"></span>Income tax</span><span><span class="dot" style="background:var(--bar-alt)"></span>Employee social contributions / mandatory savings</span></div>
+<svg viewBox="0 0 720 470" width="100%" role="img" aria-label="Ranked bar chart of effective tax rates at a 100,000 salary">
+<!-- built by script -->
+<g id="chart100"></g>
+</svg>
+<p class="small">New York City shown separately from New York State. Zurich is an estimate and canton-dependent; low-tax cantons such as Zug are lower. Full tax wedge including employer costs is higher everywhere — see caveats.</p>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">The numbers</h2>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Jurisdiction</th><th>Salary basis</th><th class="num">Effective rate</th><th class="num hide">Income tax</th><th class="num hide">Employee contributions</th><th class="num">You keep</th></tr></thead>
+<tbody id="rows100"></tbody>
+</table>
+</div>
+<p class="small">Splits shown where modelled separately. Singapore split: income tax 5.7% + employee CPF 20.0%.</p>
+</div>
+<p>Germany stays high at this level (41.5%) because its employee social-contribution ceilings are high relative to a €100,000 salary, so contributions remain a large share of pay. Italy barely moves — 48.1% here against 48.7% at €150,000 — and remains the highest in the table.</p>
+
+<h2>How to read this</h2>
+<p><strong>One number, as requested</strong> — but that number counts mandatory employee payroll contributions (state pension, health, unemployment insurance) as tax. That is the standard payslip view: it is money you do not receive. Where part of it is really your own savings — Singapore CPF, Estonia&rsquo;s funded pension — the table flags it.</p>
+<p><strong>What is left out:</strong> VAT / sales tax and other consumption taxes, property taxes, and employer-side contributions. Employer contributions are large in several European systems. For context, OECD <em>Taxing Wages 2026</em> puts the full tax wedge <em>including employer costs</em> at the average wage at 52.5% in Belgium, 49.3% in Germany and 47.2% in France — a different, broader measure than the employee-payslip rate used here.</p>
+<p><strong>Same number, different lives.</strong> 100,000 or 150,000 buys very different living standards in Zurich, Madrid and Singapore. This page compares how each system treats the same payslip figure, not purchasing power.</p>
+<p><strong>Place matters inside countries too:</strong> US states, Swiss cantons, Spanish autonomous communities (Madrid used here) and Italian regional surtaxes all move the number. New York City adds roughly 3.5 points on top of New York State.</p>
+
+<h2>Method in brief</h2>
+<p>For each jurisdiction: apply the official 2026 (or latest 2025) income-tax schedule, standard deductions/allowances and credits available to a single childless employee, plus mandatory employee social contributions with their official caps and ceilings, to gross salaries of 150,000 and 100,000 in local currency (¥15,000,000 and ¥10,000,000 for Japan). Divide the total by gross salary. Figures cross-checked for ordering against OECD <em>Taxing Wages 2026</em> (2025 data).</p>
+<ul>
+<li>UK at £150,000: personal allowance fully withdrawn; income tax 35.8% + employee National Insurance 3.3%.</li>
+<li>Germany excludes church tax; employee social contributions are capped, hence 11.7% of gross at this level.</li>
+<li>Netherlands: labour and general tax credits are fully phased out at this income; occupational pension contributions (employer-specific) excluded.</li>
+<li>Switzerland (Zurich) excludes mandatory private health-insurance premiums, roughly 3% of salary.</li>
+<li>Australia includes the 2% Medicare levy.</li>
+<li>Italy (Rome): IRPEF (23% / 33% / 43% for 2026) plus the Lazio regional surtax (3.33% at this income) and the Rome municipal surtax (0.9%); employee INPS contributions (9.19% IVS plus the 1% additional contribution above the first pension band) are subject to the official annual ceiling.</li>
+<li>UK at £100,000: personal allowance fully intact (it is withdrawn between £100,000 and £125,140) — hence 31.4% against 39.1% at £150,000.</li>
+<li>Singapore at S$100,000: the S$102,000 CPF ceiling no longer binds, so the full 20% employee CPF contribution applies — the combined rate is higher than at S$150,000 even though income tax is lower.</li>
+<li>Germany at €100,000: employee contribution ceilings are high relative to salary, so contributions stay a large share of pay (41.5% overall).</li>
+</ul>
+
+<h2>Official sources</h2>
+<p class="small">Rates modelled from tax-authority publications, not news articles.</p>
+<ul class="sources">
+<li>USA federal — IRS, Rev. Proc. 2025-32 / Internal Revenue Bulletin 2025-32: <a href="https://www.irs.gov/irb/2025-32_IRB">irs.gov/irb/2025-32_IRB</a>; IRS revenue procedures index: <a href="https://www.irs.gov/ht/tax-exempt-bonds/revenue-procedures">irs.gov</a></li>
+<li>California — Franchise Tax Board, 2025 California Tax Rate Schedules: <a href="https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf">ftb.ca.gov (PDF)</a></li>
+<li>New York State — Dept. of Taxation and Finance: <a href="https://www.tax.ny.gov/data/stats/ter/fiscal-year26/personal-income-tax.htm">tax.ny.gov</a> and Form IT-201-I instructions: <a href="https://www.tax.ny.gov/forms/html-instructions/2024/it/it201i-2024.htm">tax.ny.gov</a></li>
+<li>United Kingdom — HMRC / GOV.UK, Income Tax rates and Personal Allowances: <a href="https://www.gov.uk/income-tax-rates">gov.uk/income-tax-rates</a>; rates and allowances publication: <a href="https://www.gov.uk/government/publications/rates-and-allowances-income-tax/income-tax-rates-and-allowances-current-and-past">gov.uk</a></li>
+<li>France — Service-Public.fr, income-tax scale (barème): <a href="https://www.service-public.gouv.fr:443/telecharger-pdf?path=aHR0cHM6Ly93d3cuc2VydmljZS1wdWJsaWMuZ291di5mci9wYXJ0aWN1bGllcnMvdm9zZHJvaXRzL0YxNDE5P3JlZj15b21vbmk=">service-public.gouv.fr</a></li>
+<li>Germany — Federal Ministry of Finance (Bundesministerium der Finanzen): <a href="https://bundesfinanzministerium.de/Content/DE/Downloads/Broschueren_Bestellservice/steuerverwaltung-in-deutschland.pdf?__blob=publicationFile&v=10">bundesfinanzministerium.de (PDF)</a></li>
+<li>Netherlands — Belastingdienst: <a href="https://english.belastingdienst-cn.nl/topics/tax-individuals/income-tax/income-tax-rates-and-tax-free-amounts">english.belastingdienst-cn.nl</a></li>
+<li>Singapore — IRAS, Individual Income Tax rates: <a href="https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates/">iras.gov.sg</a>; IRAS CPF contributions guidance: <a href="https://www.iras.gov.sg/taxes/individual-income-tax/employers/understanding-the-tax-treatment/central-provident-fund-%28cpf%29-contributions">iras.gov.sg</a>; CPF Board, CPF contribution rates: <a href="https://www.cpf.gov.sg/service/article/what-are-the-changes-to-the-cpf-contribution-rates-for-senior-workers-from-1-january-2026">cpf.gov.sg</a></li>
+<li>Australia — Australian Taxation Office, Tax rates – Australian resident: <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents">ato.gov.au</a></li>
+<li>Japan — National Tax Agency: <a href="https://www.nta.go.jp/english/taxes/individual/12006.htm">nta.go.jp</a></li>
+<li>OECD — <em>Taxing Wages 2026</em>: <a href="https://www.oecd.org/en/about/news/media-advisories/2026/04/oecd-to-release-taxing-wages-2026-on-wednesday-22-april.html">oecd.org</a>; Australia country note (PDF): <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/04/taxing-wages-2026-country-notes_491a0e97/australia_18bc9499/05e00b8f-en.pdf">oecd.org (PDF)</a></li>
+<li>Italy — Agenzia delle Entrate, IRPEF rates and calculation (including the 2026 reduction of the second rate to 33%): <a href="http://agenziaentrate.gov.it/portale/imposta-sul-reddito-delle-persone-fisiche-irpef-/aliquote-e-calcolo-dell-irpef">agenziaentrate.gov.it</a>; Roma Capitale, municipal surtax (addizionale IRPEF, 0.9%): <a href="https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF41403">comune.roma.it</a>; Lazio regional surtax rates as published by Regione Lazio.</li>
+<li>Italy (contributions) — INPS, Circolare n. 6 del 30 gennaio 2026 (2026 contribution values; annual ceiling €122,295): <a href="https://www.inps.it">inps.it</a></li>
+<li>Spain — Agencia Tributaria, IRPF scales (state scale; Madrid regional scale published in the same manual series): <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2024/c15-calculo-impuesto-determinacion-cuotas-integras/gravamen-base-liquidable-general/gravamen-estatal.html">sede.agenciatributaria.gob.es</a></li>
+<li>Ireland — Revenue, Tax rates, bands and reliefs: <a href="https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx">revenue.ie</a></li>
+<li>Estonia — Tax and Customs Board (EMTA), Income and social taxes: <a href="https://www.emta.ee/en/business-client/taxes-and-payment/income-and-social-taxes">emta.ee</a></li>
+<li>Switzerland — Canton of Zurich tax administration, tax return and tariffs for individuals: <a href="https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html">zh.ch</a></li>
+</ul>
+<p class="small">Snapshot built 2 October 2026. Tax schedules change annually; verify current rates with the authority before acting on these figures.</p>
+</div>
+<script>
+var DATA=[
+ {n:"Singapore",c:"SGD 150,000",r:21.9,t:8.3,s:13.6,flag:"CPF = own savings"},
+ {n:"USA – Texas",c:"USD 150,000",r:24.1,t:16.5,s:7.7,flag:"No state income tax"},
+ {n:"USA – Florida",c:"USD 150,000",r:24.1,t:16.5,s:7.7,flag:"No state income tax"},
+ {n:"Estonia",c:"EUR 150,000",r:24.4,t:null,s:null,flag:"Incl. 2% funded pension (own account)"},
+ {n:"Australia",c:"AUD 150,000",r:26.4,t:24.4,s:2.0,flag:"Incl. 2% Medicare levy"},
+ {n:"USA – New York State",c:"USD 150,000",r:29.3,t:null,s:null,flag:"Federal + NY State"},
+ {n:"Switzerland – Zurich",c:"CHF 150,000",r:29.9,t:null,s:null,flag:"Estimate; excl. health premiums ~3%"},
+ {n:"USA – California",c:"USD 150,000",r:31.8,t:null,s:null,flag:"Federal + state + 1.1% SDI"},
+ {n:"Japan",c:"JPY 15,000,000",r:31.8,t:21.5,s:10.3,flag:""},
+ {n:"USA – New York City",c:"USD 150,000",r:32.9,t:null,s:null,flag:"State + NYC tax"},
+ {n:"Spain – Madrid",c:"EUR 150,000",r:38.2,t:null,s:null,flag:""},
+ {n:"United Kingdom",c:"GBP 150,000",r:39.1,t:35.8,s:3.3,flag:"Allowance fully withdrawn"},
+ {n:"France",c:"EUR 150,000",r:40.6,t:19.9,s:20.7,flag:""},
+ {n:"Ireland",c:"EUR 150,000",r:41.0,t:null,s:null,flag:""},
+ {n:"Netherlands",c:"EUR 150,000",r:42.8,t:null,s:null,flag:"Credits phased out"},
+ {n:"Germany",c:"EUR 150,000",r:43.0,t:31.4,s:11.7,flag:"Excl. church tax"},
+ {n:"Italy – Rome",c:"EUR 150,000",r:48.7,t:40.9,s:7.8,flag:"Highest here"}
+];
+var DATA100=[
+ {n:"USA – Texas",c:"USD 100,000",r:20.8,t:null,s:null,flag:"No state income tax"},
+ {n:"USA – Florida",c:"USD 100,000",r:20.8,t:null,s:null,flag:"No state income tax"},
+ {n:"Australia",c:"AUD 100,000",r:22.5,t:null,s:null,flag:"Incl. 2% Medicare levy"},
+ {n:"Estonia",c:"EUR 100,000",r:23.8,t:null,s:null,flag:"Incl. 2% funded pension (own account)"},
+ {n:"Switzerland – Zurich",c:"CHF 100,000",r:23.9,t:null,s:null,flag:"Estimate; canton-dependent"},
+ {n:"Singapore",c:"SGD 100,000",r:25.7,t:5.7,s:20.0,flag:"Full 20% CPF at this salary"},
+ {n:"USA – New York State",c:"USD 100,000",r:25.7,t:null,s:null,flag:"Federal + NY State"},
+ {n:"USA – California",c:"USD 100,000",r:27.1,t:null,s:null,flag:"Federal + state + SDI"},
+ {n:"Japan",c:"JPY 10,000,000",r:27.4,t:null,s:null,flag:""},
+ {n:"USA – New York City",c:"USD 100,000",r:29.1,t:null,s:null,flag:"State + NYC tax"},
+ {n:"United Kingdom",c:"GBP 100,000",r:31.4,t:null,s:null,flag:"Personal allowance intact"},
+ {n:"Ireland",c:"EUR 100,000",r:35.4,t:null,s:null,flag:""},
+ {n:"Spain – Madrid",c:"EUR 100,000",r:35.5,t:null,s:null,flag:""},
+ {n:"France",c:"EUR 100,000",r:36.8,t:null,s:null,flag:""},
+ {n:"Netherlands",c:"EUR 100,000",r:37.3,t:null,s:null,flag:""},
+ {n:"Germany",c:"EUR 100,000",r:41.5,t:null,s:null,flag:"Excl. church tax"},
+ {n:"Italy – Rome",c:"EUR 100,000",r:48.1,t:null,s:null,flag:"Highest here"}
+];
+var max=50, x0=168, w=470, rh=24, gap=3;
+var NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,text){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+function fillRows(rows,data){
+  data.forEach(function(d){
+    var keep=(100-d.r).toFixed(1);
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td><strong>'+d.n+'</strong>'+(d.flag?' <span class="badge">'+d.flag+'</span>':'')+'</td><td>'+d.c+'</td><td class="num"><strong>'+d.r.toFixed(1)+'%</strong></td><td class="num hide">'+(d.t==null?'—':d.t.toFixed(1)+'%')+'</td><td class="num hide">'+(d.s==null?'—':d.s.toFixed(1)+'%')+'</td><td class="num">'+keep+'%</td>';
+    rows.appendChild(tr);
+  });
+}
+function drawChart(g,data){
+  [0,10,20,30,40,50].forEach(function(v){
+    var x=x0+w*v/max;
+    g.appendChild(el('line',{x1:x,y1:4,x2:x,y2:452,stroke:'var(--line)','stroke-width':1}));
+    var t=el('text',{x:x,y:466,'text-anchor':'middle','font-size':11,fill:'var(--muted)','font-family':'system-ui,sans-serif'},v+'%');
+    g.appendChild(t);
+  });
+  data.forEach(function(d,i){
+    var y=8+i*(rh+gap);
+    var short={'USA – New York State':'NY State','USA – New York City':'New York City','USA – California':'California','USA – Texas':'Texas','USA – Florida':'Florida','Switzerland – Zurich':'Zurich','United Kingdom':'UK','Spain – Madrid':'Spain (Madrid)','Italy – Rome':'Italy'}[d.n]||d.n;
+    var label=el('text',{x:x0-8,y:y+16,'text-anchor':'end','font-size':12.5,fill:'var(--ink)','font-family':'system-ui,sans-serif'},short);
+    g.appendChild(label);
+    var bw=w*d.r/max;
+    if(d.t!=null&&d.s!=null){
+      var tw=w*d.t/max;
+      g.appendChild(el('rect',{x:x0,y:y,width:tw,height:rh,fill:'var(--bar)',rx:3}));
+      g.appendChild(el('rect',{x:x0+tw,y:y,width:bw-tw,height:rh,fill:'var(--bar-alt)',rx:3}));
+    } else {
+      g.appendChild(el('rect',{x:x0,y:y,width:bw,height:rh,fill:'var(--bar)',rx:3,opacity:.85}));
+    }
+    var val=el('text',{x:x0+bw+7,y:y+16,'font-size':12.5,'font-weight':'bold',fill:'var(--ink)','font-family':'system-ui,sans-serif'},d.r.toFixed(1)+'%');
+    g.appendChild(val);
+  });
+}
+fillRows(document.getElementById('rows'),DATA);
+drawChart(document.getElementById('chart'),DATA);
+fillRows(document.getElementById('rows100'),DATA100);
+drawChart(document.getElementById('chart100'),DATA100);
+</script>
+</div>
+</body>
+</html>
