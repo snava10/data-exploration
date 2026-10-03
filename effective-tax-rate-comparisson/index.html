@@ -41,12 +41,69 @@ ul.sources{font-family:system-ui,sans-serif;font-size:14px;line-height:1.7}
 <body>
 <div class="wrap">
 <h1>What share of a salary actually goes in tax?</h1>
-<p class="lede">One number per place: personal income tax plus mandatory employee payroll contributions, divided by gross salary. Single employee, no children. The same payslip number in each local currency — shown at two levels, 150,000 and 100,000 — so this compares tax systems, not living standards.</p>
-<p class="meta">Tax year 2026 where published, otherwise 2025 &middot; Modelled from official published rates &middot; Japan, Taiwan, Hong Kong, Norway and Denmark use &times;10 local-currency salaries — ¥15,000,000 / NT$1,500,000 / HK$1,500,000 / NOK&nbsp;1,500,000 / DKK&nbsp;1,500,000 at the top level (¥10,000,000 etc. at the lower level) — because 150,000 in those currencies is not a viable professional salary</p>
-<p class="meta">Disclaimer: This report has not been thoroughly reviewed and may contain minor innacuracies. Its purpose is to provide an overall gross comparisson of the tax systems in the selected countries.</p>
-<h2>At a 150,000 salary</h2>
+<p class="lede">One number per place: personal income tax plus mandatory employee payroll contributions, divided by gross salary. Single employee, no children. The same payslip number in each local currency — shown at three levels, 50,000, 100,000 and 150,000 — so this compares tax systems, not living standards.</p>
+<p class="meta">Tax year 2026 where published, otherwise 2025 &middot; Modelled from official published rates &middot; Japan, Taiwan, Hong Kong, Norway and Denmark use &times;10 local-currency salaries — ¥5,000,000 / NT$500,000 / HK$500,000 / NOK&nbsp;500,000 / DKK&nbsp;500,000 at the 50,000 level (¥10,000,000 / NT$1,000,000 etc. at the 100,000 level and ¥15,000,000 / NT$1,500,000 etc. at the 150,000 level) — because 50,000 in those currencies is not a viable professional salary</p>
 
-<div class="callout"><strong>Read Singapore with care.</strong> Its 21.9% is low, but only 8.3 points are income tax. The other 13.6 points are employee CPF contributions (20% rate, capped at the S$102,000 annual ceiling) — compulsory savings in the individual&rsquo;s own account, not general tax revenue. Estonia&rsquo;s figure similarly includes a 2% funded-pension contribution to the employee&rsquo;s own pension account. Taiwan (NT$1,500,000, 8.1%) is now the lowest in this table, followed by Hong Kong (HK$1,500,000, 15.5%).</div>
+<h2>At a 50,000 salary</h2>
+<p>Starting at a gross salary of 50,000 in local currency (¥5,000,000 for Japan; NT$500,000, HK$500,000, NOK&nbsp;500,000 and DKK&nbsp;500,000 for Taiwan, Hong Kong, Norway and Denmark). Allowances and low starting brackets do a lot of the work at this level, so rates start lower here than at the higher salaries below. Taiwan (4.8%) is the lowest, followed by Hong Kong (11.9%).</p>
+
+<div class="callout"><strong>Watch Singapore at this level.</strong> At S$50,000 income tax is only 2.5%, yet the combined rate is 22.5% — because the employee CPF contribution is the full 20% of salary, with no ceiling in the way. The CPF share is compulsory savings in the employee&rsquo;s own account, not general tax revenue — so on a tax-only view Singapore would sit near the bottom of this table instead.</div>
+
+<div class="card">
+<h2 style="margin-top:0">Ranked: lowest to highest</h2>
+<div class="legend"><span><span class="dot" style="background:var(--bar)"></span>Income tax</span><span><span class="dot" style="background:var(--bar-alt)"></span>Employee social contributions / mandatory savings</span></div>
+<svg viewBox="0 0 720 625" width="100%" role="img" aria-label="Ranked bar chart of effective tax rates at a 50,000 salary">
+<!-- built by script -->
+<g id="chart50"></g>
+</svg>
+<p class="small">New York City shown separately from New York State. Zurich is an estimate and canton-dependent; low-tax cantons such as Zug are lower. Full tax wedge including employer costs is higher everywhere — see caveats.</p>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">The numbers</h2>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Jurisdiction</th><th>Salary basis</th><th class="num">Effective rate</th><th class="num hide">Income tax</th><th class="num hide">Employee contributions</th><th class="num">You keep</th></tr></thead>
+<tbody id="rows50"></tbody>
+</table>
+</div>
+<p class="small">Every effective rate above includes both income tax and mandatory employee contributions — the two columns split them out (for the Netherlands, social premiums are levied inside the income-tax brackets, so they sit in the income-tax column; Australia&rsquo;s Medicare levy is likewise included in the income-tax figure). Singapore split: income tax 2.5% + employee CPF 20.0%.</p>
+</div>
+<p>Germany (35.4%) and France (31.4%) are already heavy at this level even though their income tax is modest — employee social contributions (21.6% in Germany, 22.9% in France) are levied from the first euro, so they make up a large share even on a modest salary. Italy is the highest here at 36.4% — it climbs to 48.1% at €100,000 (next section).</p>
+
+<h2>At a 100,000 salary</h2>
+<p>The same method at a gross salary of 100,000 in local currency (¥10,000,000 for Japan; NT$1,000,000, HK$1,000,000, NOK&nbsp;1,000,000 and DKK&nbsp;1,000,000 for Taiwan, Hong Kong, Norway and Denmark). Most rates rise as pay goes up from 50,000 — Singapore stands out for a different reason, as explained below — and the ranking reshuffles. Taiwan (5.6%) is still the lowest, followed by Hong Kong (14.8%).</p>
+
+<div class="callout"><strong>Singapore runs the other way.</strong> At S$100,000 the CPF annual ceiling (S$102,000) still does not bind, so the employee contribution remains the full 20% of salary. The combined rate is 25.7% — up from 22.5% at S$50,000, and higher than it will be at S$150,000 (21.9% in the next section, where the ceiling finally caps the CPF share) — even though income tax alone is only 5.7%. As before, the CPF share is compulsory savings in the employee&rsquo;s own account.</div>
+
+<div class="callout"><strong>The UK is much lighter at £100,000.</strong> At exactly £100,000 the personal allowance is still fully intact; it is withdrawn between £100,000 and £125,140. That helps keep the UK rate at 31.4% here — it rises to 39.1% at £150,000 (below), once the allowance is fully withdrawn.</div>
+
+<div class="card">
+<h2 style="margin-top:0">Ranked: lowest to highest</h2>
+<div class="legend"><span><span class="dot" style="background:var(--bar)"></span>Income tax</span><span><span class="dot" style="background:var(--bar-alt)"></span>Employee social contributions / mandatory savings</span></div>
+<svg viewBox="0 0 720 625" width="100%" role="img" aria-label="Ranked bar chart of effective tax rates at a 100,000 salary">
+<!-- built by script -->
+<g id="chart100"></g>
+</svg>
+<p class="small">New York City shown separately from New York State. Zurich is an estimate and canton-dependent; low-tax cantons such as Zug are lower. Full tax wedge including employer costs is higher everywhere — see caveats.</p>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">The numbers</h2>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Jurisdiction</th><th>Salary basis</th><th class="num">Effective rate</th><th class="num hide">Income tax</th><th class="num hide">Employee contributions</th><th class="num">You keep</th></tr></thead>
+<tbody id="rows100"></tbody>
+</table>
+</div>
+<p class="small">Every effective rate above includes both income tax and mandatory employee contributions — the two columns split them out (for the Netherlands, social premiums are levied inside the income-tax brackets, so they sit in the income-tax column). Singapore split: income tax 5.7% + employee CPF 20.0%.</p>
+</div>
+<p>Germany rises to 41.5% at this level because its employee social-contribution ceilings are high relative to a €100,000 salary, so contributions remain a large share of pay. Denmark (DKK&nbsp;1,000,000) is second-highest at 44.8%, just ahead of Germany. Italy is the highest here at 48.1%, up sharply from 36.4% at €50,000 — and it stays highest at €150,000 too (48.7% below), where it barely moves.</p>
+
+<h2>At a 150,000 salary</h2>
+<p>The same method at a gross salary of 150,000 in local currency (¥15,000,000 for Japan; NT$1,500,000, HK$1,500,000, NOK&nbsp;1,500,000 and DKK&nbsp;1,500,000 for Taiwan, Hong Kong, Norway and Denmark). At this level most rates are at their highest in this comparison — allowances have less effect and top brackets and contribution ceilings start to bite.</p>
+
+<div class="callout"><strong>Read Singapore with care.</strong> Its 21.9% is low, but only 8.3 points are income tax. The other 13.6 points are employee CPF contributions (20% rate, capped at the S$102,000 annual ceiling) — compulsory savings in the individual&rsquo;s own account, not general tax revenue. Estonia&rsquo;s figure similarly includes a 2% funded-pension contribution to the employee&rsquo;s own pension account. Taiwan (NT$1,500,000, 8.1%) remains the lowest in this table too, followed by Hong Kong (HK$1,500,000, 15.5%).</div>
 
 <div class="card">
 <h2 style="margin-top:0">Ranked: lowest to highest</h2>
@@ -69,43 +126,14 @@ ul.sources{font-family:system-ui,sans-serif;font-size:14px;line-height:1.7}
 <p class="small">Every effective rate above includes both income tax and mandatory employee contributions — the two columns split them out. US federal baseline in every US row: income tax 16.5% + FICA 7.7%.</p>
 </div>
 
-<h2>At a 100,000 salary</h2>
-<p>The same method at a gross salary of 100,000 in local currency (¥10,000,000 for Japan; NT$1,000,000, HK$1,000,000, NOK&nbsp;1,000,000 and DKK&nbsp;1,000,000 for Taiwan, Hong Kong, Norway and Denmark). Most rates fall as pay drops — but two places move the other way, and the ranking reshuffles. Taiwan (5.6%) is the lowest here too, followed by Hong Kong (14.8%).</p>
-
-<div class="callout"><strong>Singapore runs the other way.</strong> At S$100,000 the CPF annual ceiling (S$102,000) no longer binds, so the employee contribution is the full 20% of salary. The combined rate rises to 25.7% — higher than at S$150,000 (21.9%) — even though income tax alone is only 5.7%. As before, the CPF share is compulsory savings in the employee&rsquo;s own account.</div>
-
-<div class="callout"><strong>The UK is much lighter at £100,000.</strong> At exactly £100,000 the personal allowance is still fully intact; it is only withdrawn between £100,000 and £125,140. That is a large part of why the UK rate drops to 31.4% here, against 39.1% at £150,000.</div>
-
-<div class="card">
-<h2 style="margin-top:0">Ranked: lowest to highest</h2>
-<div class="legend"><span><span class="dot" style="background:var(--bar)"></span>Income tax</span><span><span class="dot" style="background:var(--bar-alt)"></span>Employee social contributions / mandatory savings</span></div>
-<svg viewBox="0 0 720 625" width="100%" role="img" aria-label="Ranked bar chart of effective tax rates at a 100,000 salary">
-<!-- built by script -->
-<g id="chart100"></g>
-</svg>
-<p class="small">New York City shown separately from New York State. Zurich is an estimate and canton-dependent; low-tax cantons such as Zug are lower. Full tax wedge including employer costs is higher everywhere — see caveats.</p>
-</div>
-
-<div class="card">
-<h2 style="margin-top:0">The numbers</h2>
-<div style="overflow-x:auto">
-<table>
-<thead><tr><th>Jurisdiction</th><th>Salary basis</th><th class="num">Effective rate</th><th class="num hide">Income tax</th><th class="num hide">Employee contributions</th><th class="num">You keep</th></tr></thead>
-<tbody id="rows100"></tbody>
-</table>
-</div>
-<p class="small">Every effective rate above includes both income tax and mandatory employee contributions — the two columns split them out (for the Netherlands, social premiums are levied inside the income-tax brackets, so they sit in the income-tax column). Singapore split: income tax 5.7% + employee CPF 20.0%.</p>
-</div>
-<p>Germany stays high at this level (41.5%) because its employee social-contribution ceilings are high relative to a €100,000 salary, so contributions remain a large share of pay. Denmark (DKK&nbsp;1,000,000) is second-highest at 44.8%, just ahead of Germany. Italy barely moves — 48.1% here against 48.7% at €150,000 — and remains the highest in the table.</p>
-
 <h2>How to read this</h2>
-<p><strong>One single percentage</strong> that accounts for mandatory employee payroll contributions (state pension, health, unemployment insurance) as tax. That is the standard payslip view: it is money you do not receive. Where part of it is really your own savings — Singapore CPF, Hong Kong&rsquo;s MPF, Estonia&rsquo;s funded pension — the table flags it.</p>
+<p><strong>One number (%)</strong> — that number counts mandatory employee payroll contributions (state pension, health, unemployment insurance) as tax. That is the standard payslip view: it is money you do not receive. Where part of it is really your own savings — Singapore CPF, Hong Kong&rsquo;s MPF, Estonia&rsquo;s funded pension — the table flags it.</p>
 <p><strong>What is left out:</strong> VAT / sales tax and other consumption taxes, property taxes, and employer-side contributions. Employer contributions are large in several European systems. For context, OECD <em>Taxing Wages 2026</em> puts the full tax wedge <em>including employer costs</em> at the average wage at 52.5% in Belgium, 49.3% in Germany and 47.2% in France — a different, broader measure than the employee-payslip rate used here.</p>
-<p><strong>Same number, different lives.</strong> 100,000 or 150,000 buys very different living standards in Zurich, Madrid and Singapore. This page compares how each system treats the same payslip figure, not purchasing power.</p>
+<p><strong>Same number, different lives.</strong> 50,000, 100,000 or 150,000 buys very different living standards in Zurich, Madrid and Singapore. This page compares how each system treats the same payslip figure, not purchasing power.</p>
 <p><strong>Place matters inside countries too:</strong> US states, Swiss cantons, Canadian provinces (Ontario used here), Spanish autonomous communities (Madrid used here) and Italian regional surtaxes all move the number. New York City adds roughly 3.5 points on top of New York State.</p>
 
 <h2>Method in brief</h2>
-<p>For each jurisdiction: apply the official 2026 (or latest 2025) income-tax schedule, standard deductions/allowances and credits available to a single childless employee, plus mandatory employee social contributions with their official caps and ceilings, to gross salaries of 150,000 and 100,000 in local currency. The scaled-currency rows — Japan (¥15,000,000 / ¥10,000,000), Taiwan (NT$1,500,000 / NT$1,000,000), Hong Kong (HK$1,500,000 / HK$1,000,000), Norway (NOK&nbsp;1,500,000 / NOK&nbsp;1,000,000) and Denmark (DKK&nbsp;1,500,000 / DKK&nbsp;1,000,000) — represent a comparable high-professional salary level in local currency, because 150,000 / 100,000 in those currencies is not a viable professional salary (NT$150,000/year is below Taiwan&rsquo;s minimum wage). Canada uses CAD 150,000 / CAD 100,000 at face value. Divide the total by gross salary. Figures cross-checked for ordering against OECD <em>Taxing Wages 2026</em> (2025 data).</p>
+<p>For each jurisdiction: apply the official 2026 (or latest 2025) income-tax schedule, standard deductions/allowances and credits available to a single childless employee, plus mandatory employee social contributions with their official caps and ceilings, to gross salaries of 50,000, 100,000 and 150,000 in local currency. The scaled-currency rows — Japan (¥5,000,000 / ¥10,000,000 / ¥15,000,000), Taiwan (NT$500,000 / NT$1,000,000 / NT$1,500,000), Hong Kong (HK$500,000 / HK$1,000,000 / HK$1,500,000), Norway (NOK&nbsp;500,000 / NOK&nbsp;1,000,000 / NOK&nbsp;1,500,000) and Denmark (DKK&nbsp;500,000 / DKK&nbsp;1,000,000 / DKK&nbsp;1,500,000) — represent a comparable professional salary level in local currency, because 50,000 / 100,000 / 150,000 in those currencies is not a viable professional salary (NT$150,000/year is below Taiwan&rsquo;s minimum wage). Canada uses CAD 50,000 / CAD 100,000 / CAD 150,000 at face value. Divide the total by gross salary. Figures cross-checked for ordering against OECD <em>Taxing Wages 2026</em> (2025 data).</p>
 <ul>
 <li>UK at £150,000: personal allowance fully withdrawn; income tax 35.8% + employee National Insurance 3.3%.</li>
 <li>Germany excludes church tax; employee social contributions are capped, hence 11.7% of gross at this level.</li>
@@ -113,14 +141,14 @@ ul.sources{font-family:system-ui,sans-serif;font-size:14px;line-height:1.7}
 <li>Switzerland (Zurich) excludes mandatory private health-insurance premiums, roughly 3% of salary.</li>
 <li>Australia includes the 2% Medicare levy.</li>
 <li>Italy (Rome): IRPEF (23% / 33% / 43% for 2026) plus the Lazio regional surtax (3.33% at this income) and the Rome municipal surtax (0.9%); employee INPS contributions (9.19% IVS plus the 1% additional contribution above the first pension band) are subject to the official annual ceiling.</li>
-<li>UK at £100,000: personal allowance fully intact (it is withdrawn between £100,000 and £125,140) — hence 31.4% against 39.1% at £150,000.</li>
-<li>Singapore at S$100,000: the S$102,000 CPF ceiling no longer binds, so the full 20% employee CPF contribution applies — the combined rate is higher than at S$150,000 even though income tax is lower.</li>
+<li>UK at £100,000: personal allowance fully intact (it is withdrawn between £100,000 and £125,140) — hence 31.4% here, rising to 39.1% at £150,000 once the allowance is gone.</li>
+<li>Singapore at S$100,000: the S$102,000 CPF ceiling still does not bind, so the full 20% employee CPF contribution applies — the combined rate (25.7%) is higher than at S$150,000 (21.9%), where the ceiling caps the contribution, even though income tax is lower at S$100,000.</li>
 <li>Germany at €100,000: employee contribution ceilings are high relative to salary, so contributions stay a large share of pay (41.5% overall).</li>
-<li>Taiwan (NT$1,500,000): income tax only ~5.7%; employee labour + health insurance ~2.4% — insured-salary caps keep contributions low. At NT$1,000,000 the combined rate is 5.6%, the lowest in either table.</li>
+<li>Taiwan (NT$1,500,000): income tax only ~5.7%; employee labour + health insurance ~2.4% — insured-salary caps keep contributions low. At NT$1,000,000 the combined rate is 5.6%, and at NT$500,000 it is 4.8% — Taiwan is the lowest at all three salary levels shown.</li>
 <li>Hong Kong: salaries tax plus the Mandatory Provident Fund (MPF) employee contribution — 5% capped at HK$18,000/year (1.2% of HK$1,500,000; 1.8% of HK$1,000,000). MPF is the individual&rsquo;s own retirement account, like Singapore&rsquo;s CPF.</li>
 <li>Canada (Ontario): federal + Ontario income tax plus Canada Pension Plan (including CPP2) and Employment Insurance. Ontario is the most populous province; other provinces differ.</li>
-<li>Norway: 22% ordinary income tax + bracket tax (trinnskatt) + 7.8% employee national insurance — 36.5% at NOK&nbsp;1,500,000 and 31.4% at NOK&nbsp;1,000,000 (level with the UK at the lower salary).</li>
-<li>Denmark: 8% AM-bidrag (labour-market contribution) + bottom-bracket, top-bracket and average municipal taxes — 48.5% at DKK&nbsp;1,500,000 (just below Italy) and 44.8% at DKK&nbsp;1,000,000 (second-highest at that level). Denmark&rsquo;s figures use 2025 rules; a Danish tax reform takes effect from 2026.</li>
+<li>Norway: 22% ordinary income tax + bracket tax (trinnskatt) + 7.8% employee national insurance — 22.2% at NOK&nbsp;500,000, 31.4% at NOK&nbsp;1,000,000 (level with the UK at that salary), rising to 36.5% at NOK&nbsp;1,500,000.</li>
+<li>Denmark: 8% AM-bidrag (labour-market contribution) + bottom-bracket, top-bracket and average municipal taxes — 34.2% at DKK&nbsp;500,000, 44.8% at DKK&nbsp;1,000,000 (second-highest at that level) and 48.5% at DKK&nbsp;1,500,000 (just below Italy). Denmark&rsquo;s figures use 2025 rules; a Danish tax reform takes effect from 2026.</li>
 </ul>
 
 <h2>Official sources</h2>
@@ -200,6 +228,30 @@ var DATA100=[
  {n:"Denmark",c:"DKK 1,000,000",r:44.8,t:36.8,s:8.0,flag:"2025 rules; second-highest here"},
  {n:"Italy – Rome",c:"EUR 100,000",r:48.1,t:38.3,s:9.8,flag:"Highest here"}
 ];
+var DATA50=[
+ {n:"Taiwan",c:"NT$500,000",r:4.8,t:0.5,s:4.3,flag:"Lowest here"},
+ {n:"Hong Kong",c:"HK$500,000",r:11.9,t:8.3,s:3.6,flag:"MPF = own retirement account"},
+ {n:"Australia",c:"AUD 50,000",r:13.0,t:13.0,s:0,flag:"Incl. 2% Medicare levy in income tax"},
+ {n:"USA – Texas",c:"USD 50,000",r:15.3,t:7.6,s:7.6,flag:"No state income tax"},
+ {n:"USA – Florida",c:"USD 50,000",r:15.3,t:7.6,s:7.6,flag:"No state income tax"},
+ {n:"Switzerland – Zurich",c:"CHF 50,000",r:17.9,t:9.0,s:8.9,flag:"Estimate; canton-dependent"},
+ {n:"USA – California",c:"USD 50,000",r:18.8,t:10.0,s:8.8,flag:"Federal + state + SDI"},
+ {n:"USA – New York State",c:"USD 50,000",r:19.5,t:11.8,s:7.6,flag:"Federal + NY State"},
+ {n:"Ireland",c:"EUR 50,000",r:20.7,t:14.4,s:6.3,flag:""},
+ {n:"Canada (Ontario)",c:"CAD 50,000",r:20.9,t:13.7,s:7.2,flag:"Federal + Ontario; provinces vary"},
+ {n:"United Kingdom",c:"GBP 50,000",r:21.0,t:15.0,s:6.0,flag:""},
+ {n:"Japan",c:"JPY 5,000,000",r:21.5,t:6.9,s:14.7,flag:""},
+ {n:"Netherlands",c:"EUR 50,000",r:21.7,t:21.7,s:0,flag:"Social premiums included in income tax"},
+ {n:"Estonia",c:"EUR 50,000",r:21.9,t:18.3,s:3.6,flag:"Incl. 2% funded pension (own account)"},
+ {n:"Norway",c:"NOK 500,000",r:22.2,t:14.4,s:7.8,flag:"Incl. 7.8% employee NI"},
+ {n:"Singapore",c:"SGD 50,000",r:22.5,t:2.5,s:20.0,flag:"Full 20% CPF at this salary"},
+ {n:"USA – New York City",c:"USD 50,000",r:22.5,t:14.9,s:7.6,flag:"State + NYC tax"},
+ {n:"Spain – Madrid",c:"EUR 50,000",r:29.0,t:22.5,s:6.5,flag:""},
+ {n:"France",c:"EUR 50,000",r:31.4,t:8.5,s:22.9,flag:""},
+ {n:"Denmark",c:"DKK 500,000",r:34.2,t:26.2,s:8.0,flag:"2025 rules"},
+ {n:"Germany",c:"EUR 50,000",r:35.4,t:13.9,s:21.6,flag:"Excl. church tax"},
+ {n:"Italy – Rome",c:"EUR 50,000",r:36.4,t:27.3,s:9.2,flag:"Highest here"}
+];
 var max=50, x0=168, w=470, rh=24, gap=3;
 var NS='http://www.w3.org/2000/svg';
 function el(tag,attrs,text){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
@@ -240,6 +292,8 @@ fillRows(document.getElementById('rows'),DATA);
 drawChart(document.getElementById('chart'),DATA);
 fillRows(document.getElementById('rows100'),DATA100);
 drawChart(document.getElementById('chart100'),DATA100);
+fillRows(document.getElementById('rows50'),DATA50);
+drawChart(document.getElementById('chart50'),DATA50);
 </script>
 </div>
 </body>
