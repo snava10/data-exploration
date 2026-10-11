@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Who actually votes? UK election participation in six charts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Libre+Franklin:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --paper:#f4f1e8; --ink:#12222d; --muted:#52616a; --rule:#b9b7ae;
+      --card:#fffdf7; --grid:#d4d1c8; --navy:#163b55; --teal:#147c78;
+      --gold:#d29a20; --coral:#d65f4c; --soft:#e5e0d4; --shadow:0 16px 34px rgba(23,34,43,.08);
+    }
+    @media(prefers-color-scheme:dark){
+      :root{--paper:#111a20;--ink:#eef1ed;--muted:#aeb9bd;--rule:#48545a;--card:#17232a;--grid:#39464c;--navy:#79b6d5;--teal:#50beb5;--gold:#e8b94f;--coral:#ed8271;--soft:#233139;--shadow:0 16px 34px rgba(0,0,0,.22)}
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",sans-serif;line-height:1.62}
+    a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+    a:hover{color:var(--teal)}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .hero{padding:clamp(54px,9vw,112px) 0 42px;border-bottom:1px solid var(--rule)}
+    .meta{display:flex;gap:12px;align-items:center;font:500 12px/1.3 "DM Mono",monospace;letter-spacing:.03em;color:var(--muted);margin-bottom:26px}
+    .meta .dot{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+    h1{font-family:"Newsreader",serif;font-weight:650;letter-spacing:-.035em;font-size:clamp(46px,7.5vw,94px);line-height:.93;max-width:1000px;margin:0 0 28px}
+    .standfirst{font-family:"Newsreader",serif;font-size:clamp(22px,3vw,34px);line-height:1.25;max-width:850px;margin:0;color:var(--muted)}
+    .answer-strip{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(130px,.5fr));gap:1px;background:var(--rule);border-bottom:1px solid var(--rule)}
+    .answer-strip>div{background:var(--paper);padding:24px clamp(16px,3vw,32px)}
+    .answer-strip .lede{font-family:"Newsreader",serif;font-size:24px;line-height:1.3}
+    .big{font:700 clamp(32px,4vw,54px)/1 "Libre Franklin",sans-serif;letter-spacing:-.05em;color:var(--navy)}
+    .label{font:500 11px/1.45 "DM Mono",monospace;color:var(--muted);margin-top:8px}
+    main{padding:56px 0 90px}
+    .toc{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:64px}
+    .toc a{text-decoration:none;border:1px solid var(--rule);padding:8px 12px;border-radius:2px;font:500 12px/1.2 "DM Mono",monospace;background:var(--card)}
+    .section{display:grid;grid-template-columns:minmax(190px,250px) minmax(0,1fr);gap:clamp(28px,7vw,90px);padding:66px 0;border-top:1px solid var(--rule);scroll-margin-top:18px}
+    .section:first-of-type{border-top:0;padding-top:0}
+    .section-no{font:500 12px/1 "DM Mono",monospace;color:var(--coral);margin-bottom:12px}
+    h2{font-family:"Newsreader",serif;font-weight:650;letter-spacing:-.02em;font-size:clamp(32px,4vw,52px);line-height:1.02;margin:0 0 18px}
+    .side p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
+    .chart-card{background:var(--card);box-shadow:var(--shadow);padding:clamp(18px,4vw,38px);border-radius:3px;overflow:hidden}
+    .chart-title{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:28px}
+    .chart-title h3{margin:0;font-size:17px;line-height:1.35;max-width:560px}
+    .unit{font:500 11px/1.3 "DM Mono",monospace;color:var(--muted);white-space:nowrap}
+    .chart{width:100%;min-height:280px;display:block;overflow:visible}
+    .chart text{font-family:"DM Mono",monospace;fill:var(--muted);font-size:11px}
+    .chart .value{fill:var(--ink);font-weight:500}
+    .chart .grid{stroke:var(--grid);stroke-width:1}
+    .chart .axis{stroke:var(--rule);stroke-width:1}
+    .chart .line{fill:none;stroke:var(--teal);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .chart .area{fill:color-mix(in srgb,var(--teal) 14%,transparent)}
+    .chart .dot{fill:var(--card);stroke:var(--teal);stroke-width:2}
+    .chart .dot.focus{fill:var(--coral);stroke:var(--card);stroke-width:3}
+    .chart .bar{fill:var(--navy)}
+    .chart .bar.alt{fill:var(--teal)}
+    .chart .bar.focus{fill:var(--coral)}
+    .note{margin:24px 0 0;padding-top:18px;border-top:1px solid var(--grid);font-size:13px;color:var(--muted)}
+    .note strong{color:var(--ink)}
+    .source{display:block;margin-top:10px;font:400 11px/1.5 "DM Mono",monospace;color:var(--muted)}
+    .finding{font-family:"Newsreader",serif;font-size:clamp(22px,2.7vw,31px);line-height:1.3;margin:30px 0 0;max-width:760px}
+    .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:22px}
+    .registration{display:grid;grid-template-columns:210px 1fr;gap:26px;align-items:center;min-height:280px}
+    .donut{width:200px;height:200px;border-radius:50%;background:conic-gradient(var(--teal) 0 86%,var(--coral) 86% 100%);display:grid;place-items:center;margin:auto}
+    .donut:after{content:"86%";width:128px;height:128px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:700 39px/1 "Libre Franklin",sans-serif;color:var(--teal);letter-spacing:-.05em}
+    .legend{display:grid;gap:17px}
+    .legend-item{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:start}
+    .swatch{width:12px;height:12px;margin-top:5px;background:var(--teal)}
+    .swatch.coral{background:var(--coral)}
+    .legend b{display:block;font-size:15px}
+    .legend span{display:block;font-size:13px;color:var(--muted)}
+    .post-stack{display:grid;gap:18px;padding:14px 0 4px}
+    .post-row{display:grid;grid-template-columns:46px 1fr 48px;gap:12px;align-items:center}
+    .post-year{font:500 12px/1 "DM Mono",monospace}
+    .post-bar{height:34px;background:var(--soft);display:flex;overflow:hidden;border-radius:2px}
+    .post-bar i{display:block;height:100%;background:var(--gold);font-style:normal}
+    .post-value{font:500 12px/1 "DM Mono",monospace;text-align:right}
+    .method{margin:78px 0 0;border-top:4px solid var(--ink);padding-top:30px;display:grid;grid-template-columns:1fr 2fr;gap:40px}
+    .method h2{font-size:34px}
+    .method p,.method li{font-size:14px;color:var(--muted)}
+    .method ul{padding-left:18px;margin:0}
+    .method li+li{margin-top:10px}
+    .sources{margin-top:56px;padding-top:28px;border-top:1px solid var(--rule)}
+    .sources h2{font-size:34px}
+    .sources-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 40px}
+    .sources a{font-size:13px}
+    footer{border-top:1px solid var(--rule);padding:24px 0 44px;font:400 11px/1.5 "DM Mono",monospace;color:var(--muted)}
+    .tooltip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:var(--paper);padding:8px 10px;border-radius:2px;font:500 11px/1.35 "DM Mono",monospace;opacity:0;transform:translate(-50%,-110%);transition:opacity .12s;white-space:nowrap}
+    .tooltip.show{opacity:1}
+    @media(max-width:820px){
+      .answer-strip{grid-template-columns:1fr 1fr}.answer-strip .lede{grid-column:1/-1}
+      .section{grid-template-columns:1fr;gap:24px;padding:52px 0}.side{max-width:620px}
+      .split{grid-template-columns:1fr}.registration{grid-template-columns:1fr}.method{grid-template-columns:1fr}.sources-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:540px){
+      .wrap{width:min(100% - 24px,1180px)}.hero{padding-top:42px}.meta{align-items:flex-start;flex-wrap:wrap}
+      .answer-strip{grid-template-columns:1fr 1fr}.answer-strip>div{padding:18px 14px}.answer-strip .lede{font-size:20px}
+      .big{font-size:36px}.chart-card{margin-left:-2px;margin-right:-2px}.chart-title{display:block}.unit{display:block;margin-top:7px}.chart{min-height:250px}
+      .post-row{grid-template-columns:38px 1fr 40px}.registration{min-height:auto}.donut{width:170px;height:170px}.donut:after{width:108px;height:108px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tooltip{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="tooltip" id="tooltip"></div>
+  <header class="hero">
+    <div class="wrap">
+      <h1>Who actually votes?</h1>
+      <p>Published <date id="current-date"></date></p>
+      <div class="meta"><date id="current-date"></date></div>
+      <p class="standfirst">The familiar turnout headline tells only part of the story. UK participation changes sharply by election, place and age — while an incomplete and inaccurate register complicates the denominator before polling day begins.</p>
+    </div>
+  </header>
+  <script>
+    setPublishedDate(new Date(2026, 9, 11));
+  </script>
+  
+
+  <section class="answer-strip" aria-label="Key findings">
+    <div class="lede">In the 2024 general election, fewer than three in five registered voters cast a valid ballot.</div>
+    <div><div class="big">59.7%</div><div class="label">VALID VOTES ÷ REGISTERED ELECTORATE</div></div>
+    <div><div class="big">28.8m</div><div class="label">VALID VOTES CAST</div></div>
+    <div><div class="big">7–8m</div><div class="label">NOT CORRECTLY REGISTERED AT CURRENT ADDRESS, EST.</div></div>
+  </section>
+
+  <main class="wrap">
+    <nav class="toc" aria-label="Six metrics">
+      <a href="#history">1 · History</a><a href="#types">2 · Election type</a><a href="#region">3 · Region</a><a href="#age">4 · Age</a><a href="#register">5 · Registration</a><a href="#postal">6 · Postal voting</a>
+    </nav>
+
+    <article>
+      <section class="section" id="history">
+        <div class="side"><div class="section-no">01 / LONG VIEW</div><h2>A century of rise, fall and partial recovery</h2><p>Each point is the share of the registered electorate casting a valid vote. Hover or tap the chart for individual elections.</p></div>
+        <div>
+          <div class="chart-card">
+            <div class="chart-title"><h3>Turnout at UK general elections, 1918–2024</h3><span class="unit">% OF REGISTERED ELECTORATE</span></div>
+            <svg class="chart" id="historyChart" role="img" aria-label="Line chart of turnout at UK general elections from 1918 to 2024"></svg>
+            <p class="note"><strong>Reading it:</strong> turnout peaked at 83.9% in 1950. The 2024 result, 59.7%, was the lowest since 2001 and 7.6 percentage points below 2019.</p>
+            <span class="source">Source: <a href="https://researchbriefings.files.parliament.uk/documents/CBP-8060/CBP-8060.pdf" target="_blank" rel="noopener">House of Commons Library, Turnout at elections</a>; <a href="https://researchbriefings.files.parliament.uk/documents/CBP-10009/CBP-10009.pdf" target="_blank" rel="noopener">General election 2024: Results and analysis</a>.</span>
+          </div>
+          <p class="finding">The post-war norm was participation above 70%. Since 2001, no general election has returned to that level.</p>
+        </div>
+      </section>
+
+      <section class="section" id="types">
+        <div class="side"><div class="section-no">02 / SALIENCE</div><h2>“Turnout” depends on what is being decided</h2><p>This is a comparison of the most recent election of each type available in the cited sources, not a same-year snapshot. Franchise rules also differ.</p></div>
+        <div>
+          <div class="chart-card">
+            <div class="chart-title"><h3>Turnout by election type</h3><span class="unit">PUBLISHED TURNOUT (% OF REGISTERED ELECTORATE)</span></div>
+            <svg class="chart" id="typeChart" role="img" aria-label="Horizontal bar chart comparing turnout by election type"></svg>
+            <p class="note"><strong>EU referendum checked:</strong> the Electoral Commission records 33,577,342 ballots cast from an electorate of 46,500,001 — 72.2%. That published figure includes 25,359 rejected ballots. Dates run from 2016 to 2024, and Scottish and Welsh devolved elections give voters constituency and list ballots; the higher of the two turnout rates is shown.</p>
+            <span class="source">Sources: <a href="https://researchbriefings.files.parliament.uk/documents/CBP-8060/CBP-8060.pdf" target="_blank" rel="noopener">House of Commons Library, CBP-8060</a>; <a href="https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/report-23-june-2016-referendum-uks-membership-european-union" target="_blank" rel="noopener">Electoral Commission, 2016 EU referendum report</a>.</span>
+          </div>
+          <p class="finding">The same country can produce turnout above 70% for a referendum and around the mid-30s for a local or European contest.</p>
+        </div>
+      </section>
+
+      <section class="section" id="region">
+        <div class="side"><div class="section-no">03 / PLACE</div><h2>A nine-point regional spread in 2024</h2><p>Valid votes as a percentage of the registered electorate, grouped by nation and English region.</p></div>
+        <div>
+          <div class="chart-card">
+            <div class="chart-title"><h3>Turnout by nation and region, 2024 general election</h3><span class="unit">% OF REGISTERED ELECTORATE</span></div>
+            <svg class="chart" id="regionChart" role="img" aria-label="Horizontal bars showing turnout by UK nation and English region in 2024"></svg>
+            <p class="note"><strong>Range:</strong> 64.9% in the South West versus 55.7% in Yorkshire and the Humber. Turnout fell in every nation and region compared with 2019.</p>
+            <span class="source">Source: <a href="https://researchbriefings.files.parliament.uk/documents/CBP-10009/CBP-10009.pdf" target="_blank" rel="noopener">House of Commons Library, General election 2024: Results and analysis</a>.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="age">
+        <div class="side"><div class="section-no">04 / AGE</div><h2>The steepest divide is generational</h2><p>The available age series is self-reported BES survey evidence, used here as a methodological substitution because the finished source pack did not supply register-matched age rates.</p></div>
+        <div>
+          <div class="chart-card">
+            <div class="chart-title"><h3>Reported voting by age, 2024</h3><span class="unit">% SAYING THEY VOTED</span></div>
+            <svg class="chart" id="ageChart" role="img" aria-label="Vertical bars showing self-reported 2024 voting by age group"></svg>
+            <p class="note"><strong>Methodological substitution:</strong> 31,091 British Election Study respondents, grouped by age. These self-reports are not the requested register-validated age rates and overstate actual turnout; the source pack confirmed that validation exists but did not provide a register-matched age table. The reported gap is 23.2 points.</p>
+            <span class="source">Source: <a href="https://www.britishelectionstudy.com/graph?id=42962" target="_blank" rel="noopener">British Election Study — 2024 turnout by age chart and data table</a>.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="register">
+        <div class="side"><div class="section-no">05 / DENOMINATOR</div><h2>The register is not a clean count of everyone eligible</h2><p>The Electoral Commission measures whether eligible people are correctly registered at their current address.</p></div>
+        <div>
+          <div class="chart-card">
+            <div class="chart-title"><h3>Electoral register completeness, Great Britain</h3><span class="unit">DECEMBER 2022 REGISTERS</span></div>
+            <div class="registration" role="img" aria-label="Donut chart showing 86 percent correctly registered and 14 percent not correctly registered">
+              <div class="donut" aria-hidden="true"></div>
+              <div class="legend">
+                <div class="legend-item"><i class="swatch"></i><div><b>86% correctly registered</b><span>Eligible people on the register at their current address.</span></div></div>
+                <div class="legend-item"><i class="swatch coral"></i><div><b>14% not correctly registered</b><span>Equivalent to as many as 7–8 million people across the UK not correctly registered at their current address. This includes unregistered people and some registered at an old or incorrect address; estimates carry margins of error.</span></div></div>
+              </div>
+            </div>
+            <p class="note"><strong>Denominator warning:</strong> general-election turnout divides votes by register entries, not a matched estimate of everyone eligible. Some eligible people are absent, while others may be registered at an old address; the 7–8 million estimate cannot simply be subtracted from the headline denominator.</p>
+            <span class="source">Source: <a href="https://www.electoralcommission.org.uk/research-reports-and-data/electoral-registration-research/accuracy-and-completeness-electoral-registers/2023-report-electoral-registers-uk" target="_blank" rel="noopener">Electoral Commission, 2023 report on electoral registers</a>.</span>
+          </div>
+          <p class="finding">Incorrect registration is not random: age and time at an address are the strongest predictors, with younger people and private renters least likely to be correctly registered.</p>
+        </div>
+      </section>
+
+      <section class="section" id="postal">
+        <div class="side"><div class="section-no">06 / METHOD</div><h2>One in five votes now arrives by post</h2><p>Postal voting changes how participation happens. The share below uses all votes cast — not the electorate — as its denominator.</p></div>
+        <div>
+          <div class="chart-card">
+            <div class="chart-title"><h3>Postal share of votes cast at general elections</h3><span class="unit">% OF ALL VOTES CAST</span></div>
+            <div class="post-stack" role="img" aria-label="Stacked bars showing postal votes were 18 percent of votes cast in 2019 and 20 percent in 2024">
+              <div class="post-row"><span class="post-year">2019</span><div class="post-bar"><i style="width:18%"></i></div><span class="post-value">18%</span></div>
+              <div class="post-row"><span class="post-year">2024</span><div class="post-bar"><i style="width:20%"></i></div><span class="post-value">20%</span></div>
+            </div>
+            <p class="note"><strong>Interpretation:</strong> postal ballots’ share rose by two points between 2019 and 2024. The 2024 election was the first general election with online postal-vote applications; more than 1.3 million applications arrived after the election was called.</p>
+            <span class="source">Source: <a href="https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/report-2024-uk-parliamentary-general-election-and-may-2024-elections" target="_blank" rel="noopener">Electoral Commission, report on the 2024 UK general election</a>.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="method" aria-labelledby="what-counts">
+        <div><div class="section-no">A NOTE ON MEASUREMENT</div><h2 id="what-counts">What counts as turnout?</h2></div>
+        <div>
+          <ul>
+            <li><strong>59.7% is the clean historical comparison:</strong> valid votes divided by the registered electorate, the House of Commons Library measure used in this article.</li>
+            <li><strong>60.0% is also published for 2024:</strong> the Electoral Commission’s headline includes total ballots cast, including rejected papers. Its voter-ID analysis reports 59.8%. The difference is definitional, not an error.</li>
+            <li><strong>Registered is not the same as eligible:</strong> register completeness and accuracy are imperfect. A separate eligible-population turnout needs a date- and geography-aligned denominator; it cannot be derived by treating all 7–8 million incorrectly registered people as wholly absent.</li>
+            <li><strong>Age is survey evidence:</strong> ballots are secret and official results do not record voters’ ages. Self-reports tend to overstate voting.</li>
+            <li><strong>Franchises differ:</strong> eligibility rules vary across Westminster, devolved and local elections, including for 16–17-year-olds and EU citizens.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sources" aria-labelledby="source-list">
+        <h2 id="source-list">Primary sources</h2>
+        <div class="sources-grid">
+          <a href="https://researchbriefings.files.parliament.uk/documents/CBP-8060/CBP-8060.pdf" target="_blank" rel="noopener">House of Commons Library — Turnout at elections (2023)</a>
+          <a href="https://researchbriefings.files.parliament.uk/documents/CBP-10009/CBP-10009.pdf" target="_blank" rel="noopener">House of Commons Library — General election 2024</a>
+          <a href="https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/report-2024-uk-parliamentary-general-election-and-may-2024-elections" target="_blank" rel="noopener">Electoral Commission — 2024 election report</a>
+          <a href="https://www.electoralcommission.org.uk/research-reports-and-data/electoral-registration-research/accuracy-and-completeness-electoral-registers/2023-report-electoral-registers-uk" target="_blank" rel="noopener">Electoral Commission — Register completeness</a>
+          <a href="https://www.britishelectionstudy.com/graph?id=42962" target="_blank" rel="noopener">British Election Study — 2024 turnout by age chart</a>
+          <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/elections/electoralregistration/methodologies/ukelectoralstatisticsqmi" target="_blank" rel="noopener">ONS — Electoral statistics quality and methodology</a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer><div class="wrap">Draft built from official and academic sources. Percentages are rounded as published; point differences may not sum exactly because of rounding.</div></footer>
+
+  <script>
+    (function(){
+      var NS='http://www.w3.org/2000/svg';
+      var tooltip=document.getElementById('tooltip');
+      function el(name,attrs,parent,text){var n=document.createElementNS(NS,name);for(var k in attrs)n.setAttribute(k,attrs[k]);if(text!=null)n.textContent=text;if(parent)parent.appendChild(n);return n}
+      function dims(svg,h){var w=Math.max(300,Math.floor(svg.getBoundingClientRect().width));svg.setAttribute('viewBox','0 0 '+w+' '+h);svg.style.height=h+'px';while(svg.firstChild)svg.removeChild(svg.firstChild);return {w:w,h:h}}
+      function tip(node,text){node.style.cursor='crosshair';node.addEventListener('pointerenter',function(e){tooltip.textContent=text;tooltip.classList.add('show');move(e)});node.addEventListener('pointermove',move);node.addEventListener('pointerleave',function(){tooltip.classList.remove('show')});function move(e){tooltip.style.left=e.clientX+'px';tooltip.style.top=e.clientY+'px'}}
+      var history=[[1918,57.2],[1922,73.0],[1923,71.1],[1924,77.0],[1929,76.3],[1931,76.4],[1935,71.1],[1945,72.8],[1950,83.9],[1951,82.6],[1955,76.8],[1959,78.7],[1964,77.1],[1966,75.8],[1970,72.0],[1974.15,78.8],[1974.8,72.8],[1979,76.0],[1983,72.7],[1987,75.3],[1992,77.7],[1997,71.4],[2001,59.4],[2005,61.4],[2010,65.1],[2015,66.2],[2017,68.8],[2019,67.3],[2024,59.7]];
+      function historyChart(){var s=document.getElementById('historyChart'),d=dims(s,330),m={l:45,r:14,t:14,b:38},pw=d.w-m.l-m.r,ph=d.h-m.t-m.b,minY=50,maxY=90;
+        function x(v){return m.l+(v-1918)/(2024-1918)*pw} function y(v){return m.t+(maxY-v)/(maxY-minY)*ph}
+        [50,60,70,80,90].forEach(function(v){el('line',{x1:m.l,y1:y(v),x2:d.w-m.r,y2:y(v),class:'grid'},s);el('text',{x:m.l-8,y:y(v)+4,'text-anchor':'end'},s,v+'%')});
+        [1918,1950,1974,2001,2024].forEach(function(v){el('text',{x:x(v),y:d.h-10,'text-anchor':v===1918?'start':v===2024?'end':'middle'},s,String(v))});
+        var points=history.map(function(p){return x(p[0])+','+y(p[1])}).join(' ');var area=points+' '+x(2024)+','+y(50)+' '+x(1918)+','+y(50);el('polygon',{points:area,class:'area'},s);el('polyline',{points:points,class:'line'},s);
+        history.forEach(function(p,i){var label=(p[0]===1974.15?'Feb 1974':p[0]===1974.8?'Oct 1974':Math.floor(p[0]))+': '+p[1].toFixed(1)+'%';var c=el('circle',{cx:x(p[0]),cy:y(p[1]),r:(i===history.length-1?6:3.2),class:'dot '+(i===history.length-1?'focus':'')},s);tip(c,label)});
+        el('text',{x:x(1950),y:y(83.9)-12,'text-anchor':'middle',class:'value'},s,'83.9%');el('text',{x:x(2024)-2,y:y(59.7)-13,'text-anchor':'end',class:'value'},s,'59.7%')
+      }
+      var types=[['EU referendum',2016,72.2],['Scottish Parliament',2021,63.5],['NI Assembly',2022,62.8],['UK general election',2024,59.7],['Senedd Cymru',2021,46.5],['European Parliament',2019,37.2],['English local elections',2021,35.9]];
+      function horizontalBars(id,data,min,max,height,labelWidth){var s=document.getElementById(id),d=dims(s,height),m={l:Math.min(labelWidth,d.w*.47),r:50,t:10,b:28},pw=d.w-m.l-m.r,row=(d.h-m.t-m.b)/data.length;
+        [min,(min+max)/2,max].forEach(function(v){var xx=m.l+(v-min)/(max-min)*pw;el('line',{x1:xx,y1:m.t,x2:xx,y2:d.h-m.b,class:'grid'},s);el('text',{x:xx,y:d.h-7,'text-anchor':'middle'},s,Math.round(v)+'%')});
+        data.forEach(function(p,i){var yy=m.t+i*row+row*.18,bw=(p[2]-min)/(max-min)*pw;el('text',{x:m.l-10,y:yy+row*.32,'text-anchor':'end'},s,p[0]);var r=el('rect',{x:m.l,y:yy,width:Math.max(1,bw),height:row*.48,rx:2,class:'bar '+(i===0?'focus':i<4?'alt':'')},s);tip(r,p[0]+' ('+p[1]+'): '+p[2].toFixed(1)+'%');el('text',{x:m.l+bw+7,y:yy+row*.32,class:'value'},s,p[2].toFixed(1)+'%')})
+      }
+      var regions=[['South West',64.9],['South East',64.6],['East of England',62.0],['East Midlands',61.0],['Scotland',59.2],['London',58.7],['West Midlands',57.3],['Northern Ireland',57.2],['North West',56.8],['North East',56.6],['Wales',56.2],['Yorkshire & Humber',55.7]];
+      function regionChart(){var d=regions.map(function(r){return[r[0],2024,r[1]]});horizontalBars('regionChart',d,50,70,470,145)}
+      var ages=[['18–25',65.4],['26–35',69.2],['36–45',72.0],['46–55',75.4],['56–65',84.5],['66+',88.6]];
+      function ageChart(){var s=document.getElementById('ageChart'),d=dims(s,320),m={l:40,r:8,t:20,b:46},pw=d.w-m.l-m.r,ph=d.h-m.t-m.b;function y(v){return m.t+(100-v)/50*ph}function x(i){return m.l+i*pw/ages.length+pw/ages.length*.17}var bw=pw/ages.length*.66;
+        [50,60,70,80,90,100].forEach(function(v){el('line',{x1:m.l,y1:y(v),x2:d.w-m.r,y2:y(v),class:'grid'},s);el('text',{x:m.l-7,y:y(v)+4,'text-anchor':'end'},s,v+'%')});
+        ages.forEach(function(p,i){var r=el('rect',{x:x(i),y:y(p[1]),width:bw,height:y(50)-y(p[1]),rx:2,class:'bar '+(i===0?'focus':i===ages.length-1?'alt':'')},s);tip(r,p[0]+': '+p[1].toFixed(1)+'% said they voted');el('text',{x:x(i)+bw/2,y:y(p[1])-8,'text-anchor':'middle',class:'value'},s,p[1].toFixed(1)+'%');el('text',{x:x(i)+bw/2,y:d.h-16,'text-anchor':'middle'},s,p[0])})
+      }
+      function render(){historyChart();horizontalBars('typeChart',types,0,80,350,170);regionChart();ageChart()}
+      var timer;window.addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(render,120)});render();
+    })();
+  </script>
+</body>
+</html>
